@@ -1,0 +1,7 @@
+/* light.css: 浅色主题变量 */
+:root[data-theme="light"] {
+  --color-bg: #ffffff;
+  --color-text: #222222;
+  --color-primary: #2c3e50;
+  --color-border: #e0e0e0;
+}

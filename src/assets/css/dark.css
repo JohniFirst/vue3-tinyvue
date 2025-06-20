@@ -1,0 +1,7 @@
+/* dark.css: 深色主题变量 */
+:root[data-theme="dark"] {
+  --color-bg: #181818;
+  --color-text: #f2f2f2;
+  --color-primary: #42b983;
+  --color-border: #333333;
+}

@@ -1,0 +1,9 @@
+/* theme.css: 主题变量入口，分别引入深浅色变量 */
+@import './light.css';
+@import './dark.css';
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background 0.3s, color 0.3s;
+}
