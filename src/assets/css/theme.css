@@ -2,6 +2,17 @@
 @import './light.css';
 @import './dark.css';
 
+:root {
+  --border-radius: 4px;
+  --transition-duration: 0.3s;
+  --padding-12: 12px;
+  --padding-16: 16px;
+  --padding-24: 24px;
+  --margin-12: 12px;
+  --margin-16: 16px;
+  --margin-24: 24px;
+}
+
 body {
   background: var(--color-bg);
   color: var(--color-text);
