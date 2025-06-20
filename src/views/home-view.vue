@@ -2,6 +2,7 @@
   <div class="nav-wp">
     <RouterLink to="/login">登录页面</RouterLink>
     <RouterLink to="/mind-map">思维导图页面</RouterLink>
+    <RouterLink to="/line-chart">折线图页面</RouterLink>
   </div>
 </template>
 

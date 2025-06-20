@@ -19,6 +19,11 @@ const router = createRouter({
       path: '/mind-map',
       name: 'mind-map',
       component: () => import('@/views/mind-map.vue'),
+    },
+    {
+      path: '/line-chart',
+      name: 'line-chart',
+      component: () => import('@/views/line-chart.vue'),
     }
   ],
 })
