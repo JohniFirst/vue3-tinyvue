@@ -30,5 +30,20 @@ export default defineConfig({
   server: {
     port: 5274,
     open: true
-  }
+  },
+  build: {
+    // outDir: 'dist', // 输出目录
+    assetsDir: 'static', // 静态资源目录
+    sourcemap: false, // 生产环境关闭sourcemap
+    minify: 'esbuild',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'static/js/[name]-[hash].js',
+        entryFileNames: 'static/js/[name]-[hash].js',
+        assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
+      }
+    },
+    emptyOutDir: true
+  },
 })

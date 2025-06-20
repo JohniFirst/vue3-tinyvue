@@ -15,6 +15,11 @@ const router = createRouter({
       name: 'login',
       component: LoginView,
     },
+    {
+      path: '/mind-map',
+      name: 'mind-map',
+      component: () => import('@/views/mind-map.vue'),
+    }
   ],
 })
 
