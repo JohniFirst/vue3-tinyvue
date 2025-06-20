@@ -10,6 +10,7 @@ import { TinyVueSingleResolver } from '@opentiny/unplugin-tiny-vue'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/vue3-tinyvue',
   plugins: [
     vue(),
     vueJsx(),
