@@ -24,7 +24,12 @@ const router = createRouter({
       path: '/line-chart',
       name: 'line-chart',
       component: () => import('@/views/line-chart.vue'),
-    }
+    },
+    {
+      path: '/crop-view',
+      name: 'crop-view',
+      component: () => import('@/views/crop-view.vue'),
+    },
   ],
 })
 

@@ -1,18 +1,23 @@
 <template>
   <div>
     <tiny-chart-line :options="options"></tiny-chart-line>
+
+    <tiny-chart-pie :options="pieOptions"></tiny-chart-pie>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { TinyHuichartsLine as TinyChartLine } from '@opentiny/vue-huicharts'
+import {
+  TinyHuichartsLine as TinyChartLine,
+  TinyHuichartsPie as TinyChartPie,
+} from '@opentiny/vue-huicharts'
 
 const options = ref({
   padding: [50, 30, 50, 20],
   legend: {
     show: true,
-    icon: 'line'
+    icon: 'line',
   },
   data: [
     { Month: 'Jan', Domestic: 33, Abroad: 1 },
@@ -26,11 +31,22 @@ const options = ref({
     { Month: 'Sep', Domestic: 17, Abroad: 30 },
     { Month: 'Oct', Domestic: 40, Abroad: 33 },
     { Month: 'Nov', Domestic: 42, Abroad: 22 },
-    { Month: 'Dec', Domestic: 32, Abroad: 1 }
+    { Month: 'Dec', Domestic: 32, Abroad: 1 },
   ],
   xAxis: 'Month',
   yAxis: {
-    name: 'Percent(%)'
-  }
+    name: 'Percent(%)',
+  },
+})
+
+const pieOptions = ref({
+  type: 'pie',
+  selectedMode: 'multipe',
+  data: [
+    { value: 100, name: 'VPC' },
+    { value: 90, name: 'IM' },
+    { value: 49, name: 'EIP' },
+    { value: 14, name: 'SG' },
+  ],
 })
 </script>
