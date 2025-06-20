@@ -17,11 +17,9 @@ export default defineConfig({
     // vueDevTools(),
     Components({
       resolvers: [TinyVueSingleResolver],
-      // dts: false
     }),
     AutoImport({
       resolvers: [TinyVueSingleResolver],
-      // dts: false
     })
   ],
   resolve: {

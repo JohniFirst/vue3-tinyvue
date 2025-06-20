@@ -1,10 +1,7 @@
 <script setup lang="ts">
-
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <tiny-button>TinyVue</tiny-button>
+  <RouterView />
 </template>
-
-<style scoped>
-</style>
