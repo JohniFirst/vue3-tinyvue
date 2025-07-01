@@ -1,7 +1,16 @@
 /* light.css: 浅色主题变量 */
-:root[data-theme="light"] {
+:root[data-theme='light'] {
   --color-bg: #ffffff;
+  --color-bg-soft: #f8f9fa;
+  --color-bg-mute: #f1f3f4;
   --color-text: #222222;
+  --color-text-light: #666666;
   --color-primary: #2c3e50;
+  --color-primary-light: #34495e;
   --color-border: #e0e0e0;
+  --color-border-light: #f0f0f0;
+  --color-success: #27ae60;
+  --color-warning: #f39c12;
+  --color-danger: #e74c3c;
+  --color-info: #3498db;
 }

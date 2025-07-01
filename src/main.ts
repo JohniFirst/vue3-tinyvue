@@ -1,3 +1,4 @@
+import '@opentiny/vue-theme/index.css'
 import './assets/css/reset.css'
 import './assets/css/theme.css'
 

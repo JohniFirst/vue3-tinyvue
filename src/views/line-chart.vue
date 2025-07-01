@@ -1,8 +1,25 @@
 <template>
-  <div>
-    <tiny-chart-line :options="options"></tiny-chart-line>
+  <div class="chart-page">
+    <div class="page-header">
+      <h2>数据图表</h2>
+      <p>展示各种数据可视化图表</p>
+    </div>
 
-    <tiny-chart-pie :options="pieOptions"></tiny-chart-pie>
+    <div class="charts-container">
+      <div class="chart-section">
+        <h3>折线图</h3>
+        <div class="chart-wrapper">
+          <tiny-chart-line :options="options"></tiny-chart-line>
+        </div>
+      </div>
+
+      <div class="chart-section">
+        <h3>饼图</h3>
+        <div class="chart-wrapper">
+          <tiny-chart-pie :options="pieOptions"></tiny-chart-pie>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -50,3 +67,62 @@ const pieOptions = ref({
   ],
 })
 </script>
+
+<style scoped>
+.chart-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.page-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.page-header p {
+  margin: 0;
+  color: var(--color-text-light);
+  font-size: 14px;
+}
+
+.charts-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.chart-section {
+  background: var(--color-bg-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.chart-section h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.chart-wrapper {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

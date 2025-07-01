@@ -1,5 +1,14 @@
 <template>
-  <tiny-mind-map ref="mindmap" class="demo-mind-map-event" v-model="exampleData" />
+  <div class="mind-map-page">
+    <div class="page-header">
+      <h2>思维导图</h2>
+      <p>可视化展示思维结构和知识体系</p>
+    </div>
+
+    <div class="mind-map-container">
+      <tiny-mind-map ref="mindmap" class="demo-mind-map-event" v-model="exampleData" />
+    </div>
+  </div>
   <!-- @create="onCreate"
     @operation="onOperation"
     @select-node="onSelectNode"
@@ -82,13 +91,45 @@ const exampleData = ref({
 </script>
 
 <style scoped>
+.mind-map-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.page-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.page-header p {
+  margin: 0;
+  color: var(--color-text-light);
+  font-size: 14px;
+}
+
+.mind-map-container {
+  flex: 1;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg-soft);
+}
+
 .demo-mind-map-event {
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  min-height: 500px;
 
   :deep(.map-container) {
     .map-canvas {
-      background-color: var(--tv-color-bg);
+      background-color: var(--color-bg);
     }
   }
 }

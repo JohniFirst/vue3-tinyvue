@@ -7,6 +7,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { TinyVueSingleResolver } from '@opentiny/unplugin-tiny-vue'
+import importPlugin from '@opentiny/vue-vite-import'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -20,16 +21,33 @@ export default defineConfig({
     }),
     AutoImport({
       resolvers: [TinyVueSingleResolver],
-    })
+    }),
+    importPlugin(
+      [
+        {
+          libraryName: '@opentiny/vue',
+        },
+        {
+          libraryName: `@opentiny/vue-icon`,
+          customName: (name) => {
+            return `@opentiny/vue-icon/lib/${name.replace(/^icon-/, '')}.js`
+          },
+        },
+      ],
+      'pc', // 此配置非必选，按需配置 (pc|mobile|mobile-first)
+    ),
   ],
+  define: {
+    'process.env': { TINY_MODE: 'pc' },
+  },
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
   server: {
     port: 5274,
-    open: true
+    open: true,
   },
   build: {
     // outDir: 'dist', // 输出目录
@@ -42,8 +60,8 @@ export default defineConfig({
         chunkFileNames: 'static/js/[name]-[hash].js',
         entryFileNames: 'static/js/[name]-[hash].js',
         assetFileNames: 'static/[ext]/[name]-[hash].[ext]',
-      }
+      },
     },
-    emptyOutDir: true
+    emptyOutDir: true,
   },
 })
