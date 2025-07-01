@@ -86,7 +86,7 @@ const form = reactive({
 
 const handleLogin = async () => {
   if (!form.username || !form.password) {
-    TinyMessage.warning('请输入用户名和密码')
+    ;(TinyMessage as unknown as { warning: (msg: string) => void }).warning('请输入用户名和密码')
     return
   }
 
@@ -94,10 +94,12 @@ const handleLogin = async () => {
 
   try {
     await authStore.login(form.username, form.password)
-    TinyMessage.success('登录成功！')
+    ;(TinyMessage as unknown as { success: (msg: string) => void }).success('登录成功！')
     router.push('/')
   } catch {
-    TinyMessage.warning('登录失败，请检查用户名和密码')
+    ;(TinyMessage as unknown as { warning: (msg: string) => void }).warning(
+      '登录失败，请检查用户名和密码',
+    )
   } finally {
     loading.value = false
   }

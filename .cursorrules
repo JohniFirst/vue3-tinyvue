@@ -3,7 +3,6 @@
 
 ## 项目信息
 - 这是一个基于 Vue 3 + TypeScript + Vite 的前端项目
-- 使用 pnpm 作为包管理器
 - 遵循现代前端开发最佳实践
 
 ## 代码风格和规范
@@ -12,15 +11,17 @@
 - 使用 ESLint 和 Prettier 进行代码格式化
 - 组件命名使用 kebab-case
 - 文件命名使用 kebab-case
-- 优先使用 pnpm 而不是 npm 或 yarn
+- 必须使用 pnpm
 
 ## 开发规范
-- 新组件应该放在 src/components/ 目录下
+- 公共组件应该放在 src/components/ 目录下
 - 页面组件应该放在 src/views/ 目录下
 - 使用 TypeScript 严格模式
 - 避免使用 any 类型，优先使用具体类型定义
 - 使用 Vue Router 进行路由管理
 - 使用 Pinia 进行状态管理
+- 使用 Axios 进行 API 请求
+- 类型声明统一放在types文件夹内
 
 ## 代码质量要求
 - 所有函数和变量都应该有明确的类型定义
