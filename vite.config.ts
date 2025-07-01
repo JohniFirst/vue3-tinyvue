@@ -18,9 +18,11 @@ export default defineConfig({
     // vueDevTools(),
     Components({
       resolvers: [TinyVueSingleResolver],
+      dts: 'types/components.d.ts',
     }),
     AutoImport({
       resolvers: [TinyVueSingleResolver],
+      dts: 'types/auto-imports.d.ts',
     }),
     importPlugin(
       [

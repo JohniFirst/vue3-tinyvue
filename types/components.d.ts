@@ -8,8 +8,8 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    AnchorToc: typeof import('./src/components/anchor-toc.vue')['default']
-    AutoMenu: typeof import('./src/components/auto-menu.vue')['default']
+    AnchorToc: typeof import('./../src/components/anchor-toc.vue')['default']
+    AutoMenu: typeof import('./../src/components/auto-menu.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
