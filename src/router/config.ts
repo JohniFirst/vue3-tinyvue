@@ -6,6 +6,7 @@ import type {
   RouteRecordRaw,
 } from 'vue-router'
 import { generateAutoRoutes, getMenuRoutes } from './auto-routes'
+import { generateAdvancedAutoRoutes } from './auto-routes-advanced'
 import { MainLayout } from '@/layouts'
 
 /**
@@ -79,8 +80,8 @@ export const routeConfig = {
  * 构建路由配置
  */
 export function buildRoutes(): RouteRecordRaw[] {
-  // 生成自动路由
-  const autoRoutes = generateAutoRoutes()
+  // 使用高级自动路由系统
+  const autoRoutes = generateAdvancedAutoRoutes()
 
   // 分离认证路由和主要路由
   const authRoutes = autoRoutes.filter((route) => route.name === 'login-view')

@@ -17,7 +17,7 @@
 - 公共组件应该放在 src/components/ 目录下
 - 页面组件应该放在 src/views/ 目录下
 - 使用 TypeScript 严格模式
-- 避免使用 any 类型，优先使用具体类型定义
+- 严谨使用 any 类型
 - 使用 Vue Router 进行路由管理
 - 使用 Pinia 进行状态管理
 - 使用 Axios 进行 API 请求

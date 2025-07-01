@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
-import type { AppRouteRecordRaw, PageFile, AutoRouteOptions, RouteMeta } from './types'
+import type { AppRouteRecordRaw, AutoRouteOptions, RouteMeta } from './types'
+import type { Component } from 'vue'
 
 // 默认配置
 const DEFAULT_OPTIONS: Required<AutoRouteOptions> = {
@@ -15,45 +16,8 @@ const DEFAULT_OPTIONS: Required<AutoRouteOptions> = {
   },
 }
 
-// 页面文件映射
-const PAGE_FILES: Record<string, PageFile> = {
-  dashboard: {
-    name: 'dashboard',
-    path: 'dashboard',
-    fullPath: 'src/views/dashboard.vue',
-    isDirectory: false,
-  },
-  'login-view': {
-    name: 'login-view',
-    path: 'login-view',
-    fullPath: 'src/views/login-view.vue',
-    isDirectory: false,
-  },
-  'mind-map': {
-    name: 'mind-map',
-    path: 'mind-map',
-    fullPath: 'src/views/mind-map.vue',
-    isDirectory: false,
-  },
-  'line-chart': {
-    name: 'line-chart',
-    path: 'line-chart',
-    fullPath: 'src/views/line-chart.vue',
-    isDirectory: false,
-  },
-  'crop-view': {
-    name: 'crop-view',
-    path: 'crop-view',
-    fullPath: 'src/views/crop-view.vue',
-    isDirectory: false,
-  },
-  'anchor-view': {
-    name: 'anchor-view',
-    path: 'anchor-view',
-    fullPath: 'src/views/anchor-view.vue',
-    isDirectory: false,
-  },
-}
+// 使用 import.meta.glob 自动导入所有页面组件
+const pageModules = import.meta.glob('@/views/*.vue', { eager: false })
 
 // 路由元信息映射
 const ROUTE_META: Record<string, RouteMeta> = {
@@ -102,20 +66,22 @@ const ROUTE_META: Record<string, RouteMeta> = {
 }
 
 /**
- * 生成路由名称
+ * 从文件路径生成路由名称
  */
 function generateRouteName(filePath: string): string {
   return filePath
+    .replace(/^\/src\/views\//, '')
     .replace(/\.vue$/, '')
     .replace(/[-_]/g, '-')
     .toLowerCase()
 }
 
 /**
- * 生成路由路径
+ * 从文件路径生成路由路径
  */
 function generateRoutePath(filePath: string): string {
   const path = filePath
+    .replace(/^\/src\/views\//, '')
     .replace(/\.vue$/, '')
     .replace(/[-_]/g, '-')
     .toLowerCase()
@@ -128,32 +94,21 @@ function generateRoutePath(filePath: string): string {
 }
 
 /**
- * 获取组件导入函数
- */
-function getComponentImport(filePath: string) {
-  const componentPath = `@/views/${filePath}`
-
-  // 登录页面使用同步导入
-  if (filePath === 'login-view.vue') {
-    return () => import(componentPath)
-  }
-
-  // 其他页面使用异步导入
-  return () => import(componentPath)
-}
-
-/**
  * 生成单个路由
  */
-function generateRoute(pageFile: PageFile, options: Required<AutoRouteOptions>): RouteRecordRaw {
-  const routeName = generateRouteName(pageFile.name)
-  const routePath = generateRoutePath(pageFile.name)
+function generateRoute(
+  filePath: string,
+  component: Component,
+  options: Required<AutoRouteOptions>,
+): RouteRecordRaw {
+  const routeName = generateRouteName(filePath)
+  const routePath = generateRoutePath(filePath)
   const meta = { ...options.defaultMeta, ...ROUTE_META[routeName] }
 
   return {
     path: routePath,
     name: routeName,
-    component: getComponentImport(pageFile.name + '.vue'),
+    component,
     meta,
   }
 }
@@ -165,9 +120,9 @@ export function generateAutoRoutes(options: AutoRouteOptions = {}): RouteRecordR
   const config = { ...DEFAULT_OPTIONS, ...options }
   const routes: RouteRecordRaw[] = []
 
-  // 生成所有页面路由
-  Object.values(PAGE_FILES).forEach((pageFile) => {
-    const route = generateRoute(pageFile, config)
+  // 遍历所有页面模块
+  Object.entries(pageModules).forEach(([filePath, component]) => {
+    const route = generateRoute(filePath, component, config)
     routes.push(route)
   })
 

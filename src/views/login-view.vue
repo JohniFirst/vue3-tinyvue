@@ -70,7 +70,7 @@
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
-import { TinyMessage } from '@opentiny/vue'
+import { Message } from '@opentiny/vue'
 
 defineOptions({ name: 'LoginView' })
 
@@ -86,7 +86,7 @@ const form = reactive({
 
 const handleLogin = async () => {
   if (!form.username || !form.password) {
-    ;(TinyMessage as unknown as { warning: (msg: string) => void }).warning('请输入用户名和密码')
+    Message({ type: 'warning', message: '请输入用户名和密码' })
     return
   }
 
@@ -94,12 +94,10 @@ const handleLogin = async () => {
 
   try {
     await authStore.login(form.username, form.password)
-    ;(TinyMessage as unknown as { success: (msg: string) => void }).success('登录成功！')
+    Message({ type: 'success', message: '登录成功！' })
     router.push('/')
   } catch {
-    ;(TinyMessage as unknown as { warning: (msg: string) => void }).warning(
-      '登录失败，请检查用户名和密码',
-    )
+    Message({ type: 'warning', message: '登录失败，请检查用户名和密码' })
   } finally {
     loading.value = false
   }
