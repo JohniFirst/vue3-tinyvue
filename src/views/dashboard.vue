@@ -1,176 +1,35 @@
 <template>
-  <div class="dashboard">
-    <div class="welcome-section">
-      <h2>欢迎回来，{{ user?.username }}！</h2>
-      <p>今天是 {{ currentDate }}，祝您工作愉快！</p>
+  <div class="dashboard-page page-component">
+    <div class="page-header animated-header">
+      <h2 class="title-animation">欢迎回来，{{ user?.username }}！</h2>
+      <p class="subtitle-animation">今天是个美好的一天，让我们开始工作吧</p>
     </div>
 
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-          </svg>
-        </div>
-        <div class="stat-content">
-          <h3>总访问量</h3>
-          <p class="stat-number">12,847</p>
-          <span class="stat-change positive">+12.5%</span>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="12,6 12,12 16,14"></polyline>
-          </svg>
-        </div>
-        <div class="stat-content">
-          <h3>在线时长</h3>
-          <p class="stat-number">8.5h</p>
-          <span class="stat-change positive">+2.3h</span>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="m22 21-2-2"></path>
-            <path d="M16 16l4 4 4-4"></path>
-          </svg>
-        </div>
-        <div class="stat-content">
-          <h3>活跃用户</h3>
-          <p class="stat-number">1,234</p>
-          <span class="stat-change positive">+5.2%</span>
-        </div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-icon">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14,2 14,8 20,8"></polyline>
-            <line x1="16" y1="13" x2="8" y2="13"></line>
-            <line x1="16" y1="17" x2="8" y2="17"></line>
-            <polyline points="10,9 9,9 8,9"></polyline>
-          </svg>
-        </div>
-        <div class="stat-content">
-          <h3>文档数量</h3>
-          <p class="stat-number">456</p>
-          <span class="stat-change positive">+8.1%</span>
+    <div class="dashboard-grid">
+      <div
+        class="dashboard-card card-animation"
+        v-for="(card, index) in dashboardCards"
+        :key="card.title"
+        :style="{ animationDelay: `${index * 0.1}s` }"
+      >
+        <div class="card-icon">{{ card.icon }}</div>
+        <div class="card-content">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <RouterLink :to="card.link" class="card-link"> 立即访问 → </RouterLink>
         </div>
       </div>
     </div>
 
-    <div class="quick-actions">
-      <h3>快速操作</h3>
-      <div class="actions-grid">
-        <RouterLink to="/mind-map" class="action-card">
-          <div class="action-icon">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="12" cy="12" r="3"></circle>
-              <path d="M12 1v6m0 6v6"></path>
-              <path d="M1 12h6m6 0h6"></path>
-            </svg>
-          </div>
-          <h4>思维导图</h4>
-          <p>创建和管理思维导图</p>
-        </RouterLink>
-
-        <RouterLink to="/line-chart" class="action-card">
-          <div class="action-icon">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <polyline points="3,3 21,3 21,21 3,21 3,3"></polyline>
-              <polyline points="7,7 7,17 17,17 17,7"></polyline>
-            </svg>
-          </div>
-          <h4>数据图表</h4>
-          <p>查看数据统计图表</p>
-        </RouterLink>
-
-        <RouterLink to="/crop-view" class="action-card">
-          <div class="action-icon">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M6.13 1L6 16a2 2 0 0 0 2 2h15"></path>
-              <path d="M1 6.13L16 6a2 2 0 0 1 2 2v15"></path>
-            </svg>
-          </div>
-          <h4>图片裁剪</h4>
-          <p>编辑和裁剪图片</p>
-        </RouterLink>
-
-        <RouterLink to="/anchor-view" class="action-card">
-          <div class="action-icon">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="12" cy="8" r="3"></circle>
-              <path d="M12 11v10"></path>
-              <path d="M8 21h8"></path>
-            </svg>
-          </div>
-          <h4>导航预览</h4>
-          <p>查看导航结构</p>
-        </RouterLink>
+    <div class="quick-stats">
+      <div
+        class="stat-item stat-animation"
+        v-for="(stat, index) in quickStats"
+        :key="stat.label"
+        :style="{ animationDelay: `${index * 0.2}s` }"
+      >
+        <div class="stat-number">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
       </div>
     </div>
   </div>
@@ -180,182 +39,290 @@
 import { computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 
+defineOptions({ name: 'DashboardView' })
+
 const authStore = useAuthStore()
 const user = computed(() => authStore.user)
 
-const currentDate = computed(() => {
-  return new Date().toLocaleDateString('zh-CN', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'long',
-  })
-})
+const dashboardCards = [
+  {
+    title: '思维导图',
+    description: '可视化展示思维结构和知识体系',
+    icon: '🧠',
+    link: '/mind-map',
+  },
+  {
+    title: '数据图表',
+    description: '展示各种数据可视化图表',
+    icon: '📈',
+    link: '/line-chart',
+  },
+  {
+    title: '图片裁剪',
+    description: '支持图片裁剪、旋转和缩放功能',
+    icon: '✂️',
+    link: '/crop-view',
+  },
+  {
+    title: '导航预览',
+    description: '自动生成页面导航目录，支持锚点跳转',
+    icon: '🔗',
+    link: '/anchor-view',
+  },
+]
 
-defineOptions({ name: 'DashboardView' })
+const quickStats = [
+  { label: '今日访问', value: '1,234' },
+  { label: '活跃用户', value: '567' },
+  { label: '完成任务', value: '89' },
+  { label: '系统状态', value: '正常' },
+]
 </script>
 
 <style scoped>
-.dashboard {
-  max-width: 1200px;
-  margin: 0 auto;
+.dashboard-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-.welcome-section {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
-  color: white;
-  padding: 32px;
-  border-radius: 12px;
-  margin-bottom: 32px;
+.page-header {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-.welcome-section h2 {
-  margin: 0 0 8px 0;
-  font-size: 28px;
-  font-weight: 600;
+.animated-header {
+  animation: slideDown 0.8s ease-out;
 }
 
-.welcome-section p {
+.title-animation {
+  margin: 0 0 12px 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 2s ease-in-out infinite alternate;
+}
+
+.subtitle-animation {
   margin: 0;
-  font-size: 16px;
-  opacity: 0.9;
+  font-size: 1.2rem;
+  color: #64748b;
+  animation: fadeInUp 0.8s ease-out 0.3s both;
 }
 
-.stats-grid {
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   margin-bottom: 32px;
 }
 
-.stat-card {
-  background: var(--color-bg-soft);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
+.dashboard-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
   padding: 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  transition: all 0.3s ease;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+.card-animation {
+  animation: cardSlideIn 0.6s ease-out both;
 }
 
-.stat-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--color-primary);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  flex-shrink: 0;
+.dashboard-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-color: #667eea;
 }
 
-.stat-content h3 {
-  margin: 0 0 4px 0;
-  font-size: 14px;
-  color: var(--color-text-light);
-  font-weight: 500;
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: left 0.5s;
 }
 
-.stat-number {
-  margin: 0 0 4px 0;
-  font-size: 24px;
+.dashboard-card:hover::before {
+  left: 100%;
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  display: block;
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+.card-content h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.card-content p {
+  margin: 0 0 16px 0;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.card-link {
+  display: inline-block;
+  color: #667eea;
+  text-decoration: none;
   font-weight: 600;
-  color: var(--color-text);
+  transition: all 0.3s;
+  position: relative;
 }
 
-.stat-change {
-  font-size: 12px;
-  font-weight: 500;
+.card-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #667eea;
+  transition: width 0.3s;
 }
 
-.stat-change.positive {
-  color: #10b981;
+.card-link:hover::after {
+  width: 100%;
 }
 
-.quick-actions {
-  margin-top: 32px;
-}
-
-.quick-actions h3 {
-  margin: 0 0 24px 0;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--color-text);
-}
-
-.actions-grid {
+.quick-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
 }
 
-.action-card {
-  background: var(--color-bg-soft);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-  padding: 24px;
-  text-decoration: none;
-  color: var(--color-text);
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.action-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: var(--color-primary);
-}
-
-.action-icon {
-  width: 48px;
-  height: 48px;
-  background: var(--color-primary);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.stat-item {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  margin-bottom: 16px;
+  padding: 24px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow:
+    0 10px 15px -3px rgba(102, 126, 234, 0.3),
+    0 4px 6px -2px rgba(102, 126, 234, 0.1);
+  transition: all 0.3s;
 }
 
-.action-card h4 {
-  margin: 0 0 8px 0;
-  font-size: 16px;
-  font-weight: 600;
+.stat-animation {
+  animation: statSlideIn 0.6s ease-out both;
 }
 
-.action-card p {
-  margin: 0;
-  font-size: 14px;
-  color: var(--color-text-light);
+.stat-item:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 25px -5px rgba(102, 126, 234, 0.4),
+    0 10px 10px -5px rgba(102, 126, 234, 0.2);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-label {
+  font-size: 1rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* 动画定义 */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleGlow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 15px rgba(102, 126, 234, 0.6));
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes iconBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes statSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @media (max-width: 768px) {
-  .stats-grid {
+  .dashboard-grid {
     grid-template-columns: 1fr;
   }
 
-  .actions-grid {
-    grid-template-columns: 1fr;
+  .quick-stats {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .welcome-section {
-    padding: 24px;
-  }
-
-  .welcome-section h2 {
-    font-size: 24px;
+  .title-animation {
+    font-size: 2rem;
   }
 }
 </style>

@@ -11,37 +11,48 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
-      meta: { requiresAuth: false },
+      meta: {
+        requiresAuth: false,
+        transition: 'page-scale',
+      },
     },
     {
       path: '/',
       component: MainLayout,
-      meta: { requiresAuth: true },
+      meta: {
+        requiresAuth: true,
+        transition: 'page-fade',
+      },
       children: [
         {
           path: '',
           name: 'dashboard',
           component: DashboardView,
+          meta: { transition: 'page-bounce' },
         },
         {
           path: '/mind-map',
           name: 'mind-map',
           component: () => import('@/views/mind-map.vue'),
+          meta: { transition: 'page-flip' },
         },
         {
           path: '/line-chart',
           name: 'line-chart',
           component: () => import('@/views/line-chart.vue'),
+          meta: { transition: 'page-slide' },
         },
         {
           path: '/crop-view',
           name: 'crop-view',
           component: () => import('@/views/crop-view.vue'),
+          meta: { transition: 'page-wave' },
         },
         {
           path: '/anchor-view',
           name: 'anchor-view',
           component: () => import('@/views/anchor-view.vue'),
+          meta: { transition: 'page-scale' },
         },
       ],
     },
