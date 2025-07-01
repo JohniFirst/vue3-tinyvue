@@ -30,6 +30,11 @@ const router = createRouter({
       name: 'crop-view',
       component: () => import('@/views/crop-view.vue'),
     },
+    {
+      path: '/anchor-view',
+      name: 'anchor-view',
+      component: () => import('@/views/anchor-view.vue'),
+    },
   ],
 })
 

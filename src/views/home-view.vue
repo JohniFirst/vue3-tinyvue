@@ -4,6 +4,7 @@
     <RouterLink to="/mind-map">思维导图页面</RouterLink>
     <RouterLink to="/line-chart">折线图页面</RouterLink>
     <RouterLink to="/crop-view">图片裁剪页面</RouterLink>
+    <RouterLink to="/anchor-view">导航预览</RouterLink>
   </div>
 </template>
 

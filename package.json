@@ -13,7 +13,10 @@
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "deploy": "gh-pages -d dist",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "prepare": "husky",
+    "lint:staged": "lint-staged",
+    "commit-msg": "commitlint --edit"
   },
   "dependencies": {
     "@opentiny/vue": "^3.24.0",
@@ -28,6 +31,8 @@
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@opentiny/unplugin-tiny-vue": "^1.0.0",
     "@tsconfig/node22": "^22.0.1",
     "@types/jsdom": "^21.1.7",
@@ -42,8 +47,10 @@
     "eslint": "^9.22.0",
     "eslint-plugin-vue": "~10.0.0",
     "gh-pages": "^6.3.0",
+    "husky": "^9.1.7",
     "jiti": "^2.4.2",
     "jsdom": "^26.0.0",
+    "lint-staged": "^16.1.2",
     "npm-run-all2": "^7.0.2",
     "prettier": "3.5.3",
     "typescript": "~5.8.0",
@@ -53,5 +60,14 @@
     "vite-plugin-vue-devtools": "^7.7.2",
     "vitest": "^3.1.1",
     "vue-tsc": "^2.2.8"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,css,scss}": [
+      "prettier --write"
+    ]
   }
 }
