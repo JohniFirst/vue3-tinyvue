@@ -1,3 +1,4 @@
+import type { RouteRecordRaw } from 'vue-router'
 import type { AppRouteRecordRaw, PageFile, AutoRouteOptions, RouteMeta } from './types'
 
 // 默认配置
@@ -144,7 +145,7 @@ function getComponentImport(filePath: string) {
 /**
  * 生成单个路由
  */
-function generateRoute(pageFile: PageFile, options: Required<AutoRouteOptions>): AppRouteRecordRaw {
+function generateRoute(pageFile: PageFile, options: Required<AutoRouteOptions>): RouteRecordRaw {
   const routeName = generateRouteName(pageFile.name)
   const routePath = generateRoutePath(pageFile.name)
   const meta = { ...options.defaultMeta, ...ROUTE_META[routeName] }
@@ -160,9 +161,9 @@ function generateRoute(pageFile: PageFile, options: Required<AutoRouteOptions>):
 /**
  * 生成自动路由配置
  */
-export function generateAutoRoutes(options: AutoRouteOptions = {}): AppRouteRecordRaw[] {
+export function generateAutoRoutes(options: AutoRouteOptions = {}): RouteRecordRaw[] {
   const config = { ...DEFAULT_OPTIONS, ...options }
-  const routes: AppRouteRecordRaw[] = []
+  const routes: RouteRecordRaw[] = []
 
   // 生成所有页面路由
   Object.values(PAGE_FILES).forEach((pageFile) => {
@@ -172,8 +173,8 @@ export function generateAutoRoutes(options: AutoRouteOptions = {}): AppRouteReco
 
   // 按 order 排序
   routes.sort((a, b) => {
-    const orderA = a.meta?.order || 999
-    const orderB = b.meta?.order || 999
+    const orderA = (a.meta as RouteMeta)?.order || 999
+    const orderB = (b.meta as RouteMeta)?.order || 999
     return orderA - orderB
   })
 

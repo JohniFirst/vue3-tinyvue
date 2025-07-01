@@ -1,14 +1,10 @@
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { buildRoutes, checkRoutePermission } from './config'
-import type { AppRouteRecordRaw } from './types'
-
-// 构建路由配置
-const routes = buildRoutes()
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: routes as RouteRecordRaw[],
+  routes: buildRoutes(),
 })
 
 // 路由守卫
@@ -17,7 +13,7 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = authStore.isAuthenticated
 
   // 检查路由权限
-  const hasPermission = checkRoutePermission(to as AppRouteRecordRaw, isAuthenticated)
+  const hasPermission = checkRoutePermission(to, isAuthenticated)
 
   if (!hasPermission) {
     // 如果没有权限，重定向到登录页

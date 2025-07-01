@@ -1,7 +1,7 @@
-import type { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw, RouteMeta as VueRouteMeta } from 'vue-router'
 
 // 路由元信息类型
-export interface RouteMeta {
+export interface RouteMeta extends VueRouteMeta {
   title?: string
   icon?: string
   requiresAuth?: boolean

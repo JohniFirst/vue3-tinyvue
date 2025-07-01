@@ -1,5 +1,10 @@
 import type { AppRouteRecordRaw } from './types'
-import type { Router, RouteLocationNormalized, NavigationGuardNext } from 'vue-router'
+import type {
+  Router,
+  RouteLocationNormalized,
+  NavigationGuardNext,
+  RouteRecordRaw,
+} from 'vue-router'
 import { generateAutoRoutes, getMenuRoutes } from './auto-routes'
 import { MainLayout } from '@/layouts'
 
@@ -73,7 +78,7 @@ export const routeConfig = {
 /**
  * 构建路由配置
  */
-export function buildRoutes(): AppRouteRecordRaw[] {
+export function buildRoutes(): RouteRecordRaw[] {
   // 生成自动路由
   const autoRoutes = generateAutoRoutes()
 
@@ -82,7 +87,7 @@ export function buildRoutes(): AppRouteRecordRaw[] {
   const mainRoutes = autoRoutes.filter((route) => route.name !== 'login-view')
 
   // 构建最终路由结构
-  const routes: AppRouteRecordRaw[] = [
+  const routes: RouteRecordRaw[] = [
     // 认证路由（无布局）
     ...authRoutes,
 
