@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 // 创建 axios 实例
 const http = axios.create({
@@ -7,28 +7,28 @@ const http = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-});
+})
 
 // 请求拦截器
 http.interceptors.request.use(
-  config => {
+  (config) => {
     // 可以在这里添加 token 或其他自定义内容
-    return config;
+    return config
   },
-  error => {
-    return Promise.reject(error);
-  }
-);
+  (error) => {
+    return Promise.reject(error)
+  },
+)
 
 // 响应拦截器
 http.interceptors.response.use(
-  response => {
-    return response.data;
+  (response) => {
+    return response.data
   },
-  error => {
+  (error) => {
     // 可以统一处理错误
-    return Promise.reject(error);
-  }
-);
+    return Promise.reject(error)
+  },
+)
 
-export default http;
+export default http
