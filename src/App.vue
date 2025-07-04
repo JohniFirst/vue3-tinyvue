@@ -1,23 +1,15 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
-
-const authStore = useAuthStore()
-
-onMounted(() => {
-  // 初始化认证状态
-  authStore.initAuth()
-})
 </script>
 
 <template>
   <div class="app-container">
-    <RouterView v-slot="{ Component, route }">
+    <!-- <RouterView v-slot="{ Component, route }">
       <transition name="page-fade" mode="out-in" appear>
         <component :is="Component" :key="route.path" />
       </transition>
-    </RouterView>
+    </RouterView> -->
+    <RouterView />
   </div>
 </template>
 
