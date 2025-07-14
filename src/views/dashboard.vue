@@ -1,12 +1,12 @@
 <template>
   <div class="dashboard-page page-component">
-    <div class="page-header animated-header">
+    <section class="page-header animated-header">
       <h2 class="title-animation">欢迎回来，{{ user?.username }}！</h2>
       <p class="subtitle-animation">今天是个美好的一天，让我们开始工作吧</p>
-    </div>
+    </section>
 
-    <div class="dashboard-grid">
-      <div
+    <ul class="dashboard-grid">
+      <li
         class="dashboard-card card-animation"
         v-for="(card, index) in dashboardCards"
         :key="card.title"
@@ -18,20 +18,24 @@
           <p>{{ card.description }}</p>
           <RouterLink :to="card.link" class="card-link"> 立即访问 → </RouterLink>
         </div>
-      </div>
-    </div>
+      </li>
+    </ul>
 
-    <div class="quick-stats">
-      <div
+    <ul class="quick-stats">
+      <li
         class="stat-item stat-animation"
         v-for="(stat, index) in quickStats"
         :key="stat.label"
         :style="{ animationDelay: `${index * 0.2}s` }"
       >
-        <div class="stat-number">{{ stat.value }}</div>
-        <div class="stat-label">{{ stat.label }}</div>
-      </div>
-    </div>
+        <p class="stat-number">{{ stat.value }}</p>
+        <p class="stat-label">{{ stat.label }}</p>
+      </li>
+    </ul>
+
+    <section>
+      <input type="text" v-focus />
+    </section>
   </div>
 </template>
 
