@@ -40,6 +40,11 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: '/shared-animation',
+      name: 'SharedAnimation',
+      component: () => import('@/views/shared-animation.vue'),
+    },
   ],
 })
 
