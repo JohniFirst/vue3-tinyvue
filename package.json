@@ -46,7 +46,7 @@
     "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.31.0",
-    "eslint-plugin-vue": "~10.2.0",
+    "eslint-plugin-vue": "~10.3.0",
     "gh-pages": "^6.3.0",
     "husky": "^9.1.7",
     "jiti": "^2.4.2",
@@ -60,7 +60,7 @@
     "vite": "^7.0.4",
     "vite-plugin-vue-devtools": "^7.7.7",
     "vitest": "^3.2.4",
-    "vue-tsc": "^2.2.12"
+    "vue-tsc": "^3.0.1"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [

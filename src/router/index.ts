@@ -45,6 +45,11 @@ const router = createRouter({
       name: 'SharedAnimation',
       component: () => import('@/views/shared-animation.vue'),
     },
+    {
+      path: '/seperate-form',
+      name: 'SeperateForm',
+      component: () => import('@/views/seperate-form/seperate-form.vue'),
+    },
   ],
 })
 

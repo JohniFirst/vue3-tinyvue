@@ -1,6 +1,6 @@
 import type { Plugin } from 'vue'
-import vFocus from './v-focus'
-import vLazy from './v-lazy'
+import vFocus from './directives/v-focus'
+import vLazy from './directives/v-lazy'
 
 /**
  * 注册全局指令
